@@ -21,6 +21,11 @@ FROM inventory
 GROUP BY film_id
 ORDER BY count(film_id) DESC;
 
+--4.How many customers have a last name with "William"
+SELECT firsts_name, LAST_name
+FROM customer
+WHERE last_name = 'William';
+
 --Answer 8 is the max of time a film occurs
 
 --5. What store employee (get the id) sold the most rentals?
@@ -28,6 +33,7 @@ SELECT staff_id, count(rental_id)
 FROM rental
 GROUP BY staff_id
 ORDER BY count(rental_id) desc;
+--Anwser: film id 508,15 actors
 
 --6. How many different district names are there?
 SELECT DISTINCT first_name, last_name
@@ -50,13 +56,12 @@ WHERE last_name like'%es';
 --Answer: There are 21 customers with 'es' at the end of there last names 
 
 --9. How many payment amounts (4.99, 5.99, etc.) had a number of rentals above 250 for customers with ids between 380 and 430? (use group by and having > 250)
-SELECT distinct amount, count(rental_id), customer_id
+SELECT amount,count(amount)
 FROM payment
 WHERE customer_id BETWEEN 380 AND 430
-GROUP BY amount, customer_id
-HAVING count(rental_id) > 250;
-
---Answer: I gave up on this one, I don't thing that I have the right conditonals in the correct command line
+GROUP BY amount;
+HAVING count(amount) > 250;
+--Answer: 3 
 --10. Within the film table, how many rating categories are there? And what rating has the most moive total?
 SELECT DISTINCT rating, count(film_id)
 FROM film 
